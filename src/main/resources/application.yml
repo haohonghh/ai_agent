@@ -1,3 +1,22 @@
+spring:
+  application:
+    name: customer-service
+
+  redis:
+    host: localhost
+    port: 6379
+
+  elasticsearch:
+    uris: http://localhost:9200
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    com.multica.customer: DEBUG
 # SmartCare 智能客服系统 - 应用配置文件
 
 spring:
