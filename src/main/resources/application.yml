@@ -1,0 +1,82 @@
+# SmartCare 智能客服系统 - 应用配置文件
+
+spring:
+  application:
+    name: smartcare-customer-service
+
+  # PostgreSQL 数据库配置
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smartcare?useSSL=false&serverTimezone=UTC
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # Redis 配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ""
+      database: 0
+      timeout: 3000
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+
+  # Jackson 配置
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss'Z'
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Elasticsearch 配置
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http
+  username: elastic
+  password: elastic
+  index:
+    faq: smartcare_faq
+
+# JWT 配置
+jwt:
+  secret: your-secret-key-change-in-production
+  expiration: 86400000
+
+# WebSocket 配置
+websocket:
+  path: /ws/chat
+  allowed-origins: "*"
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.smartcare: DEBUG
+    org.springframework.web.socket: DEBUG
